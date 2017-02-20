@@ -52,6 +52,7 @@ class Spielbrett(object):
             Spielzahl = gz
         else:
             print('Du kannst nur auf die Zahlen 1-6 setzen.')
+            exit()
 
     def Spielzahl(self):
         return Spielzahl
