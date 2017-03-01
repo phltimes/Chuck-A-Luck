@@ -1,13 +1,3 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      stickphi00
-#
-# Created:     13.02.2017
-# Copyright:   (c) stickphi00 2017
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
 from random import randint
 
 class Wuerfel(object):
@@ -50,7 +40,7 @@ class Spielbrett(object):
             global Spielzahl
             Spielzahl = gz
         else:
-            print('Du kannst nur auf die Zahlen 1-6 setzen.')
+            print('Du kannst nur auf die Zahlen von', WZ1,'-', WZ2,'setzen.')
             exit()
 
     def Spielzahl(self):
