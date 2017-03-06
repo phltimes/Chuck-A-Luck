@@ -1,29 +1,29 @@
 from random import randint
 
-class RWuerfel(object):
+class Wuerfel(object):
     def __init__(self):
-        self.augen = 0
+        pass
+
+    def werfen(self):
+        self.augen = randint(WZ1, WZ2)
+
+    def Wuerfel(self):
+        return self.augen
+
+
+class RWuerfel(Wuerfel):
+    def __init__(self):
         global WZ1
         global WZ2
         WZ1 = int(input("Würfelzahl 1:"))
         WZ2 = int(input("Würfelzahl 2:"))
 
-    def werfen(self):
-        self.raugen = randint(WZ1, WZ2)
-        RErgebnis = self.raugen
-
-    def Wuerfel(self):
-        return self.raugen
-
-class Wuerfel(object):
+class Wnormal(Wuerfel):
     def __init__(self):
-        self.augen = 0
-
-    def werfen(self):
-        self.augen = randint(1, 6)
-
-    def Wuerfel(self):
-        return self.augen
+        global WZ1
+        WZ1 = 1
+        global WZ2
+        WZ2 = 6
 
 class Muenze(object):
     def __init__(self):
@@ -110,7 +110,7 @@ class Spiel(object):
         if RZufall == 'Würfel' and Wuerfel.Wuerfel() == rundezahl:
             k.einzahlen(1)
             print('Du hast richtig getippt!')
-        elif RZufall == 'RWürfel' and RWuerfel.Wuerfel() == rrundezahl:
+        elif RZufall == 'RWürfel' and Wuerfel.Wuerfel() == rrundezahl:
             k.einzahlen(1)
             print('Du hast richtig getippt!')
         elif RZufall == 'Münze' and Muenze.Seite() == rundesymbol:
@@ -133,7 +133,7 @@ Runde.EinsatzSetzen()
 if RZufall == 'Würfel':
     rundezahl = int(input("Zahl:"))
     Runde.SpielzahlSetzen(rundezahl)
-    Wuerfel = Wuerfel()
+    Wuerfel = Wnormal()
     Wuerfel.werfen()
     print('Würfel:', Wuerfel.Wuerfel())
 
@@ -145,11 +145,11 @@ elif RZufall == 'Münze':
     print('Seite: ', Muenze.Seite())
 
 elif RZufall == 'RWürfel':
-    RWuerfel = RWuerfel()
+    Wuerfel = RWuerfel()
     global rrundezahl
     rrundezahl = int(input("Zahl:"))
-    RWuerfel.werfen()
-    print('Würfel: ', RWuerfel.Wuerfel())
+    Wuerfel.werfen()
+    print('Würfel: ', Wuerfel.Wuerfel())
 
 Runde.GewinnAuszahlen()
 print('Ende')
