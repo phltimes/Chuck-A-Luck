@@ -1,0 +1,155 @@
+from random import randint
+
+class RWuerfel(object):
+    def __init__(self):
+        self.augen = 0
+        global WZ1
+        global WZ2
+        WZ1 = int(input("Würfelzahl 1:"))
+        WZ2 = int(input("Würfelzahl 2:"))
+
+    def werfen(self):
+        self.raugen = randint(WZ1, WZ2)
+        RErgebnis = self.raugen
+
+    def Wuerfel(self):
+        return self.raugen
+
+class Wuerfel(object):
+    def __init__(self):
+        self.augen = 0
+
+    def werfen(self):
+        self.augen = randint(1, 6)
+
+    def Wuerfel(self):
+        return self.augen
+
+class Muenze(object):
+    def __init__(self):
+        self.seite = 0
+
+    def werfen(self):
+        self.seite = randint(1, 2)
+        if self.seite == 1:
+            self.seite = 'Kopf'
+        else:
+            self.seite = 'Zahl'
+        RErgebnis = self.seite
+
+    def Seite(self):
+        return self.seite
+
+
+class Konto(object):
+    def __init__(self):
+        self.stand = 100
+
+    def auszahlen(self):
+        if self.stand == 0:
+            print('Du hast kein Geld mehr!')
+        else:
+            self.stand = self.stand - 1
+            print('Dein Kontostand:', self.stand)
+
+    def einzahlen(self, betrag):
+        self.stand = self.stand + betrag
+        print('Dein Kontostand:', self.stand)
+
+    def Konto(self):
+        print('Dein Kontostand:', self.stand)
+
+
+class Spielbrett(object):
+    def __init__(self):
+       pass
+
+    def setzen(self, gz):
+        Felder = [1, 2, 3, 4, 5, 6]
+        if gz in Felder:
+            print('Du hast auf ', gz, 'gesetzt.')
+            global Spielzahl
+            Spielzahl = gz
+        else:
+            print('Du kannst nur auf die Zahlen von', WZ1,'-', WZ2,'setzen.')
+            exit()
+
+#    def Spielzahl(self):
+#        return Spielzahl
+
+
+class Spiel(object):
+    def __init__(self):
+        global wuerfelA
+        wuerfelA = Wuerfel()
+        global wuerfelB
+        wuerfelB = Wuerfel()
+        global wuerfelC
+        wuerfelC = Wuerfel()
+        global s
+        s = Spielbrett()
+        global k
+        k = Konto()
+
+    def EinsatzSetzen(self):
+        k.auszahlen()
+
+    def SpielzahlSetzen(self, Zahl):
+        gz = Zahl
+        s.setzen(gz)
+
+    def wuerfelWerfen(self):
+        wuerfelA.werfen()
+        wuerfelB.werfen()
+        wuerfelC.werfen()
+        print('Wuerfel 1: ', wuerfelA.Wuerfel())
+        print('Wuerfel 2: ', wuerfelB.Wuerfel())
+        print('Wuerfel 3: ', wuerfelC.Wuerfel())
+
+    def GewinnAuszahlen(self):
+        if RZufall == 1 and Wuerfel.Wuerfel() == rundezahl:
+            k.einzahlen(1)
+            print('Du hast richtig getippt!')
+        elif RZufall == 3 and RWuerfel.Wuerfel() == rrundezahl:
+            k.einzahlen(1)
+            print('Du hast richtig getippt!')
+        elif RZufall == 2 and Muenze.Seite() == rundesymbol:
+            k.einzahlen(1)
+            print('Du hast richtig getippt!')
+        else:
+            print('Du hast leider nichts gewonnen.')
+
+    def ZufallWaehlen(self):
+        global RZufall
+        RZufall = int(input("Würfel:1 Muenze:2 RWuerfel:3"))
+
+# Spielprogramm
+global RErgebnis
+RErgebnis = 0
+global rundezahl
+Runde = Spiel()
+Runde.ZufallWaehlen()
+Runde.EinsatzSetzen()
+if RZufall == 1:
+    rundezahl = int(input("Zahl:"))
+    Runde.SpielzahlSetzen(rundezahl)
+    Wuerfel = Wuerfel()
+    Wuerfel.werfen()
+    print('Würfel:', Wuerfel.Wuerfel())
+
+elif RZufall == 2:
+    global rundesymbol
+    rundesymbol = input("Kopf / Zahl:")
+    Muenze = Muenze()
+    Muenze.werfen()
+    print('Seite: ', Muenze.Seite())
+
+elif RZufall == 3:
+    RWuerfel = RWuerfel()
+    global rrundezahl
+    rrundezahl = int(input("Zahl:"))
+    RWuerfel.werfen()
+    print('Würfel: ', RWuerfel.Wuerfel())
+
+Runde.GewinnAuszahlen()
+print('Ende')
