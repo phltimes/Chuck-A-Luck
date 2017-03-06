@@ -107,13 +107,13 @@ class Spiel(object):
         print('Wuerfel 3: ', wuerfelC.Wuerfel())
 
     def GewinnAuszahlen(self):
-        if RZufall == 1 and Wuerfel.Wuerfel() == rundezahl:
+        if RZufall == 'Würfel' and Wuerfel.Wuerfel() == rundezahl:
             k.einzahlen(1)
             print('Du hast richtig getippt!')
-        elif RZufall == 3 and RWuerfel.Wuerfel() == rrundezahl:
+        elif RZufall == 'RWürfel' and RWuerfel.Wuerfel() == rrundezahl:
             k.einzahlen(1)
             print('Du hast richtig getippt!')
-        elif RZufall == 2 and Muenze.Seite() == rundesymbol:
+        elif RZufall == 'Münze' and Muenze.Seite() == rundesymbol:
             k.einzahlen(1)
             print('Du hast richtig getippt!')
         else:
@@ -121,7 +121,7 @@ class Spiel(object):
 
     def ZufallWaehlen(self):
         global RZufall
-        RZufall = int(input("Würfel:1 Muenze:2 RWuerfel:3"))
+        RZufall = input("Würfel oder Münze oder RWürfel ")
 
 # Spielprogramm
 global RErgebnis
@@ -130,21 +130,21 @@ global rundezahl
 Runde = Spiel()
 Runde.ZufallWaehlen()
 Runde.EinsatzSetzen()
-if RZufall == 1:
+if RZufall == 'Würfel':
     rundezahl = int(input("Zahl:"))
     Runde.SpielzahlSetzen(rundezahl)
     Wuerfel = Wuerfel()
     Wuerfel.werfen()
     print('Würfel:', Wuerfel.Wuerfel())
 
-elif RZufall == 2:
+elif RZufall == 'Münze':
     global rundesymbol
     rundesymbol = input("Kopf / Zahl:")
     Muenze = Muenze()
     Muenze.werfen()
     print('Seite: ', Muenze.Seite())
 
-elif RZufall == 3:
+elif RZufall == 'RWürfel':
     RWuerfel = RWuerfel()
     global rrundezahl
     rrundezahl = int(input("Zahl:"))
